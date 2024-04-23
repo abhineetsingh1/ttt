@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        
+    }
+.game{
+    align-items:center;
+    display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+}
+
+.box{
+    
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  cursor: pointer;
+}
+</style>
+<body>
+    <p id="msg" > </p>
+    <h1 style="text-align: center;">Tic Tac Toe</h1>
+    <h3 style="text-align: center;">But not your normal one</h3>
+
+    <div class="game">
+        <button class="box"> </button>
+        <button class="box"> </button>
+        <button class="box"> </button>
+        <button class="box"> </button>
+        <button class="box"> </button>
+        <button class="box"> </button>
+        <button class="box"> </button>
+        <button class="box"> </button>
+        <button class="box"> </button>
+
+    </div>
+    <button id="reset" >Reset</button>
+    <script>
+        let boxes= document.querySelectorAll(".box");
+        let reset=document.querySelector("#reset");
+        let msg=document.querySelector("#msg");
+    
+        let turno= true;
+        let winpatt = [
+            [0,1,2],
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
+            [1,4,7],
+            [2,5,8],
+            [0,4,8],
+            [2,4,6],
+];
+
+boxes.forEach((box)=>{
+    box.addEventListener("click",()=>{
+        if(turno){
+            box.innerText = 
+            
+            "O";
+            turno=false;
+        }
+        else{
+            box.innerText = "X";
+            turno=true;
+        }
+        box.disabled=true;
+        checkwinner();
+    })
+});
+
+const checkwinner=()=>{
+    for(patt of winpatt){
+       let val1=boxes[patt[0]].innerText
+       let val2=boxes[patt[1]].innerText
+       let val3=boxes[patt[2]].innerText
+if(val1!=""&&val2!=""&&val3!=""){
+        if(val1==val2&&val2==val3){
+            console.log("winner",val1)
+            msg.innerText="winner is ";
+        }
+    }
+    }
+}
+
+
+    </script>
+</body>
+</html>
